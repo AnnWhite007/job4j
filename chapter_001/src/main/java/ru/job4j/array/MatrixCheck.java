@@ -6,6 +6,8 @@ package ru.job4j.array;
  * Проверить, что строка в двухмерном массива целиком заполнена символом 'X'
  * 6.7.2. Моно столбец в матрице.
  * Аналогичный метод, который будет проверять, что все элементы в колонки заполнены символом 'X'
+ * 6.7.3. Массив из диагонали матрицы.
+ * Заполнить одномерный массив элементами диагонали из двухмерного массива
  */
 
 public class MatrixCheck {
@@ -28,5 +30,12 @@ public class MatrixCheck {
             }
         }
         return result;
+    }
+    public static char[] extractDiagonal(char[][] board) {
+        char[] rsl = new char[board.length];
+        for (int index = 0; index < board.length; index++) {
+            rsl[index] = board[index][index];
+        }
+        return rsl;
     }
 }
