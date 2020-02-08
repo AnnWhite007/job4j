@@ -1,5 +1,11 @@
 package ru.job4j.calculator;
 
+/**
+ * 3.1. Элементарный калькулятор.
+ * Демонстрируем работу с арифметическими операциями:
+ * сложением, вычитанием, умножением и делением.
+ */
+
 public class Calculator {
 
     public static void add(int first, int second) {

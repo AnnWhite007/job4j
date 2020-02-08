@@ -1,5 +1,10 @@
 package ru.job4j.condition;
 
+/**
+ * 4.1. Глупый бот.
+ * Бот должен принимать строку и возвращать ответ.
+ */
+
 public class DummyBot {
 
     public String answer(String question) {

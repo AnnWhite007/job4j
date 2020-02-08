@@ -2,7 +2,7 @@ package ru.job4j.calculate;
 
 /**
  * Calculate.
- *
+ * 1.1. Создание Hello World
  * @author Anna Babintseva (anuta_myrzilka@inbox.ru)
  * @version $Id$
  * @since 0.1

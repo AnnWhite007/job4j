@@ -1,5 +1,10 @@
 package ru.job4j.calculator;
 
+/**
+ * 3.3. Идеальный вес.
+ * Реализуем программу для вычисления идеального веса
+ */
+
 public class Fit {
 
     public static double manWeight(double height) {

@@ -1,5 +1,12 @@
 package ru.job4j.condition;
 
+/**
+ * 3.5. Стороны прямоугольника.
+ * вычислить площадь прямоугольника.
+ * Известны периметр и соотношение сторон прямоугольника.
+ * p = 2 * (L + h); где L - длина, h - высота
+ */
+
 public class SqArea {
     public static int square(int p, int k) {
         int height = p / (2 * (k + 1));

@@ -1,5 +1,11 @@
 package ru.job4j.array;
 
+/**
+ * 6.6. Двухмерный массив. Таблица умножения.
+ * size - указывает на размер таблицы.
+ * В элементах таблицы нужно записать элементы таблицы умножения.
+ */
+
 public class Matrix {
     public int[][] multiple(int size) {
         int[][] table = new int[size][size];
