@@ -22,10 +22,16 @@ public class FindLoop {
         }
         return rst;
     }
+
+    /**
+     * @param data - массив чисел
+     * @param el - элемент, который нужно найти
+     * @param start - индекс с которого начинаем поиск
+     * @param finish - индекс которым заканчиваем поиск
+     * @return - если элемента нет в массиве, то возвращаем -1
+     */
     public static int indexOf(int[] data, int el, int start, int finish) {
-        // data - массив чисел, el - элемент, который нужно найти,
-        // start - индекс с которого начинаем поиск, finish - индекс которым заканчиваем поиск
-        int rst = -1; // если элемента нет в массиве, то возвращаем -1.
+        int rst = -1;
         for (int index = start; index < finish; index++) {
             if (data[index] == el){
                 rst = index;

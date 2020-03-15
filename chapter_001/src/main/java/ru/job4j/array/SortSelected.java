@@ -10,7 +10,10 @@ package ru.job4j.array;
  */
 
 public class SortSelected {
-    //data - массив чисел, который нужно отсортировать по возрастанию
+
+    /**
+     * @param data - массив чисел, который нужно отсортировать по возрастанию
+     */
     public static int[] sort(int[] data) {
         for (int start = 0; start < data.length - 1; start++) {
         int min = MinDiapason.findMin(data, start, data.length - 1);

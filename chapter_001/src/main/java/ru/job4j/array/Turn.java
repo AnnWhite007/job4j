@@ -7,8 +7,11 @@ package ru.job4j.array;
  */
 
 public class Turn {
+
+    /**
+     * метод back, который принимает в себя массив целых чисел, а возвращает тот же самый массив, но перевёрнутый задом наперёд.
+     */
     public int[] back(int[] array) {
-        //метод back, который принимает в себя массив целых чисел, а возвращает тот же самый массив, но перевёрнутый задом наперёд.
         int j = array.length;
         for (int index = 0; index < array.length / 2; index++) {
             int temp = array [index];

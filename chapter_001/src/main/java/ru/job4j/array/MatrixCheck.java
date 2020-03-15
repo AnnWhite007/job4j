@@ -26,6 +26,7 @@ public class MatrixCheck {
         }
         return result;
     }
+
     public static boolean monoVertical(char[][] board, int column) {
         boolean result = true;
         for (int index = 0; index < board.length; index++) {
@@ -36,6 +37,7 @@ public class MatrixCheck {
         }
         return result;
     }
+
     public static char[] extractDiagonal(char[][] board) {
         char[] rsl = new char[board.length];
         for (int index = 0; index < board.length; index++) {
@@ -43,12 +45,15 @@ public class MatrixCheck {
         }
         return rsl;
     }
-    //Метод должен проверить, что в квадратном массиве есть строчки или столбцы заполненные только символов 'X'.
+
+    /**
+     * Метод должен проверить, что в квадратном массиве есть строчки или столбцы заполненные только символов 'X'.
+     * При любой выигрышной комбинации элементы всегда пересекают диагональ. Это дает нам возможность сократить количество проходов.
+     * Мы определяем координаты элемента в диагонали и проверяет вертикальную линию и горизонтальную линию.
+     */
     public static boolean isWin(char[][] board) {
         boolean result = false;
         for (int index = 0; index < board.length; index++) {
-            //При любой выигрышной комбинации элементы всегда пересекают диагональ. Это дает нам возможность сократить количество проходов.
-            //Мы определяем координаты элемента в диагонали и проверяет вертикальную линию и горизонтальную линию.
             if (board[index][index] == 'X') {
                 if (monoHorizontal(board, index) || monoVertical(board, index))
                 result = true;

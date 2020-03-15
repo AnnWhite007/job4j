@@ -6,7 +6,9 @@ package ru.job4j.array;
  */
 
 public class EndsWith {
-    //метод проверяет, что слово заканчивается c определенной последовательности.
+    /**
+     * Метод проверяет, что слово заканчивается c определенной последовательности.
+     */
     public static boolean endsWith(char[] word, char[] post) {
         boolean result = true;
         // проверить. что массив word имеет последние элементы одинаковые с post
