@@ -26,7 +26,8 @@ public class Tracker {
 
     /**
      * Метод генерирует уникальный ключ для заявки.
-     * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
+     * Так как у заявки нет уникальности полей, имени и описание.
+     * Для идентификации нам нужен уникальный ключ.
      *
      * @return Уникальный ключ.
      */
@@ -40,26 +41,16 @@ public class Tracker {
     // Метод public Item[] findAll() возвращает копию массива this.items
 // без null элементов (без пустых клеток).
     public Item[] findAll(String[] args) {
-        Item[] withoutNull = new Item[this.items.length];
-        int size = 0;
-        for (int index = 0; index < this.items.length; index++) {
-            Item name = this.items[index];
-            if (name != null) {
-                withoutNull[size] = name;
-                size++;
-            }
-        }
-        withoutNull = Arrays.copyOf(withoutNull, size);
-        return withoutNull;
+        return Arrays.copyOf(items, position);
     }
 
     //получение списка по имени
     public Item[] findByName(String key) {
-        Item[] sameName = new Item[this.items.length];
+        Item[] sameName = new Item[position];
         int size = 0;
-        for (int index = 0; index < this.items.length; index++) {
+        for (int index = 0; index < position; index++) {
             Item name = this.items[index];
-            if (name.equals(key)) {
+            if (name.getName().equals(key)) {
                 sameName[size] = name;
                 size++;
             }
@@ -70,8 +61,9 @@ public class Tracker {
 
     //получение заявки по id
     public Item findById(String id) {
-        for (int index = 0; index < this.items.length; index++) {
-            if (this.items[index].equals(id)) {
+        for (int index = 0; index < position; index++) {
+            Item a = this.items[index];
+            if (a.getId().equals(id)) {
                 return this.items[index];
             }
         }
