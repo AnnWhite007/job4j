@@ -15,8 +15,12 @@ public class Max {
         return result;
     }
     public static int max(int left, int right, int front) {
-        int result = max(left, right) > front ? max(left, right) : front;
-        return result;
+       // int result = max(left, right) > front ? max(left, right) : front;
+        return max(left, max(front, right));
+    }
+    public static int max(int left, int right, int front, int back) {
+       // int result = max(left, right, front)> back ? max(left, right, front) : back;
+        return max(back, max(left, max(front, right)));
     }
 
 }

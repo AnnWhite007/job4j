@@ -34,4 +34,8 @@ import static org.junit.Assert.assertThat;
             int result = Max.max(2, 2, 2);
             assertThat(result, is(2));
         }
+        public void whenMax2To3Then7Then1() {
+            int result = Max.max(2, 3, 7, 1);
+            assertThat(result, is(1));
+        }
     }
