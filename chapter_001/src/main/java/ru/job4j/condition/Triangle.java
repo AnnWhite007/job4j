@@ -80,18 +80,13 @@ public class Triangle {
     /**
      * Метод проверяет можно ли построить треугольник с такими длинами сторон.
      *
-     * Подумайте какое надо написать условие, чтобы определить можно ли построить треугольник.
+     * условие, чтобы определить можно ли построить треугольник.
      *
      * @param a Длина от точки a b.
      * @param b Длина от точки a c.
      * @param c Длина от точки b c.
-     * @return
      */
     private boolean exist(double a, double c, double b) {
-        if (a + b > c && b + c > a && a + c > b) {
-            return true;
-        } else {
-            return false;
-        }
+            return a + b > c && b + c > a && a + c > b;
     }
 }
