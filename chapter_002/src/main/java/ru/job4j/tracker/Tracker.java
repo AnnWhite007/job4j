@@ -40,7 +40,7 @@ public class Tracker {
     //получение списка всех заявок
     // Метод public Item[] findAll() возвращает копию массива this.items
 // без null элементов (без пустых клеток).
-    public Item[] findAll(String[] args) {
+    public Item[] findAll() {
         return Arrays.copyOf(items, position);
     }
 
