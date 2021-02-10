@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * 5. Tracker - хранилище.
+ * 6. Метод замены заявки. Tracker.replace
  * Метод public Item add(Item item) добавляет заявку,
  * переданную в аргументах в массив заявок items.
  * Метод public Item findById(int id) проверяет в цикле все элементы массива items,
@@ -15,6 +16,7 @@ import java.util.Arrays;
  * сравнивая name (используя метод getName класса Item) с аргументом метода String key.
  * Элементы, у которых совпадает name, копирует в результирующий массив и возвращает его.
  * Алгоритм этого метода аналогичен методу findAll.
+ * replace - метод замены заявки. То есть удалить заявку, которая уже есть в системе и добавить в эту ячейку новую.
  */
 
 public class Tracker {
@@ -31,21 +33,18 @@ public class Tracker {
         items[size++] = item;
         return item;
     }
-    // получение заявки по id
+
+    // получение заявки по id, возвращает объект Item
     public Item findById(int id) {
-        Item rsl = null;
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (item.getId() == id) {
-                rsl = item;
-                break;
-            }
-        }
-        return rsl;
+        // Находим индекс
+        int index = indexOf(id);
+        // Если индекс найден возвращаем item, иначе null
+        return index != -1 ? items[index] : null;
     }
-        // получение списка всех заявок
+
+    // получение списка всех заявок
     public Item[] findAll() {
-        Item [] itemsWithoutNull = new Item[size];
+        Item []itemsWithoutNull = new Item[size];
         int resize = 0;
         for (int i = 0; i < size; i++) {
             Item item = items[i];
@@ -70,5 +69,29 @@ public class Tracker {
         }
         sameName = Arrays.copyOf(sameName, resize);
         return sameName;
+    }
+
+    // Метод, который будет возвращать index по id
+    private int indexOf(int id) {
+        int rsl = -1;
+        for (int index = 0; index < size; index++) {
+            if (items[index].getId() == id) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
+
+    // Замена заявки
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        if (index != -1) {
+            items[index].setName(item.getName());
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
