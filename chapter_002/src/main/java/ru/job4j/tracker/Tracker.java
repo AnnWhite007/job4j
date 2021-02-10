@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * 5. Tracker - хранилище.
  * 6. Метод замены заявки. Tracker.replace
+ * 7. Метод удаления заявки Tracker.delete
  * Метод public Item add(Item item) добавляет заявку,
  * переданную в аргументах в массив заявок items.
  * Метод public Item findById(int id) проверяет в цикле все элементы массива items,
@@ -16,7 +17,16 @@ import java.util.Arrays;
  * сравнивая name (используя метод getName класса Item) с аргументом метода String key.
  * Элементы, у которых совпадает name, копирует в результирующий массив и возвращает его.
  * Алгоритм этого метода аналогичен методу findAll.
- * replace - метод замены заявки. То есть удалить заявку, которая уже есть в системе и добавить в эту ячейку новую.
+ * replace - метод замены заявки. То есть удалить заявку,
+ * которая уже есть в системе и добавить в эту ячейку новую.
+ * delete - метод удаления заявки (запись в ячейку нулевой ссылки - null),
+ * c перемещением всех ячеек справа на одну позицию с помощью метода
+ * System.arraycopy(source, startPos, dist, distPos, length);
+ * source - массив откуда нужно скопировать элементы начиная с позиции startPos и до позиции startPos + length.
+ * length - сколько элементов взять начиная от startPos.
+ * dist - массив, куда вставить скопированные элементы от source.
+ * Этот метод может работать с одним массивом для source и dist.
+ * distPos - начиная с какого элемента вставлять скопированные ячейки.
  */
 
 public class Tracker {
@@ -91,6 +101,17 @@ public class Tracker {
             return true;
         }
         else {
+            return false;
+        }
+    }
+    public boolean delete(int id) {
+        int index = indexOf(id);
+        if (index != -1) {
+            System.arraycopy(items, index + 1, items, index, size - index);
+            items[size - 1] = null;
+            size--;
+            return true;
+        } else {
             return false;
         }
     }
