@@ -27,6 +27,9 @@ import java.util.Arrays;
  * dist - массив, куда вставить скопированные элементы от source.
  * Этот метод может работать с одним массивом для source и dist.
  * distPos - начиная с какого элемента вставлять скопированные ячейки.
+ *
+ *  8. Что такое валидация?
+ * - это проверка параметров метода. Если параметры не верные, то выполнить метод нельзя.
  */
 
 public class Tracker {
@@ -93,26 +96,24 @@ public class Tracker {
         return rsl;
     }
 
-    // Замена заявки
+    // Замена заявки + валидация
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
-        if (index != -1) {
+        boolean rsl = index != -1;
+        if (rsl) {
             items[index].setName(item.getName());
-            return true;
         }
-        else {
-            return false;
-        }
+        return rsl;
     }
+    // Удаление элемента из массива и перемещение всех ячеек справа на одну позицию + валидация
     public boolean delete(int id) {
         int index = indexOf(id);
-        if (index != -1) {
+        boolean rsl = index != -1;
+        if (rsl) {
             System.arraycopy(items, index + 1, items, index, size - index);
             items[size - 1] = null;
             size--;
-            return true;
-        } else {
-            return false;
         }
+        return rsl;
     }
 }
