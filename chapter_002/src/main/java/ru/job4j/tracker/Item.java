@@ -2,22 +2,23 @@ package ru.job4j.tracker;
 
 import java.util.Objects;
 /**
- * Сlass Item описывает бизнес модель заявки
+ * Класс Item описывает модель заявления.
+ * Поле id - это уникальный номер заявления.
+ * Поле name содержит название заявления.
 */
 public class Item {
-
-    private String id;
-    private String name;
-
     public Item(String name) {
         this.name = name;
     }
 
-    public String getId() {
+    private int id;
+    private String name;
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
