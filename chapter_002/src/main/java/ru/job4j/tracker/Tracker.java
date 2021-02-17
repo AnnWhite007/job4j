@@ -57,16 +57,7 @@ public class Tracker {
 
     // получение списка всех заявок
     public Item[] findAll() {
-        Item []itemsWithoutNull = new Item[size];
-        int resize = 0;
-        for (int i = 0; i < size; i++) {
-            Item item = items[i];
-            if (item != null) {
-                itemsWithoutNull[resize] = item;
-                resize++;
-            }
-        }
-        return Arrays.copyOf(itemsWithoutNull, resize);
+        return Arrays.copyOf(items, size);
     }
 
     // получение списка по имени
@@ -101,7 +92,7 @@ public class Tracker {
         int index = indexOf(id);
         boolean rsl = index != -1;
         if (rsl) {
-            items[index].setName(item.getName());
+            items[index] = item;
         }
         return rsl;
     }
