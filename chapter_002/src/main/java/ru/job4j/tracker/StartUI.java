@@ -1,23 +1,21 @@
 package ru.job4j.tracker;
 
-import java.util.Scanner;
-
 /**
  * 2.1. Реализация класса StartUI
  * Консольное приложение для работы с классом ru.job4j.tracker.Tracker.
+ * Вместо вызова scanner.nextLine() - input.askStr(msg), где msg - это сообщение,
+ * которое вы хотели бы вывести пользователю перед его вводом
  */
 public class StartUI {
 //  В зависимости от введенного пункта нужно отработать ситуации по пунктам меню.
-    public void init(Scanner scanner, Tracker tracker) {
+    public void init(Input input, Tracker tracker) {
         boolean run = false;
         while (run) {
             this.showMenu();
-            System.out.println("Select: ");
-            int select = Integer.valueOf(scanner.nextLine());
+            int select = Integer.valueOf(input.askStr("Select: "));
             if (select == 0) {
                 System.out.println("=== Create a new Item ===");
-                System.out.print("Enter name: ");
-                String name = scanner.nextLine();
+                String name = input.askStr("Enter name: ");
                 Item item = new Item(name);
                 tracker.add(item);
             } else if (select == 1) {
@@ -27,11 +25,9 @@ public class StartUI {
                 }
             } else if (select == 2) {
                 System.out.println("=== Write id ====");
-                System.out.print("id: ");
-                int id = Integer.valueOf(scanner.nextLine());
+                int id = Integer.valueOf(input.askStr("id: "));
                 System.out.println("=== Write new name ====");
-                System.out.print("name: ");
-                String newname = scanner.nextLine();
+                String newname = input.askStr("name: ");
                 Item newItem = new Item(newname);
                 if (tracker.replace(id, newItem)) {
                     System.out.println("=== Successfully ===="); // вывод об успешности операции
@@ -40,8 +36,7 @@ public class StartUI {
                 }
             } else if (select == 3) {
                 System.out.println("=== Write id ====");
-                System.out.print("id: ");
-                int id = Integer.valueOf(scanner.nextLine());
+                int id = Integer.valueOf(input.askStr("id: "));
                 if (tracker.delete(id)) {
                     System.out.println("=== Successfully ===="); // вывод об успешности операции
                 } else {
@@ -49,8 +44,7 @@ public class StartUI {
                 }
             } else if (select == 4) {
                 System.out.println("=== Write id ====");
-                System.out.print("id: ");
-                int id = Integer.valueOf(scanner.nextLine());
+                int id = Integer.valueOf(input.askStr("id: "));
                 if (tracker.findById(id) == null) {
                     System.out.println("=== Application with this id was not found ===="); // вывод об ошибке
                 } else {
@@ -58,8 +52,7 @@ public class StartUI {
                 }
             } else if (select == 5) {
                 System.out.println("=== Write search name ====");
-                System.out.print("search name: ");
-                String findName = scanner.nextLine();
+                String findName = input.askStr("search name: ");
                 Item[] listFindName = tracker.findByName(findName);
                 if (listFindName.length == 0) {
                     System.out.println("=== Applications with this name was not found ===="); // вывод об ошибке
@@ -87,8 +80,8 @@ public class StartUI {
 
         // при запуске пользователю отображается меню в консоли
         public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
+            Input input = new ConsoleInput();
             Tracker tracker = new Tracker();
-            new StartUI().init(scanner, tracker);
+            new StartUI().init(input, tracker);
         }
 }
