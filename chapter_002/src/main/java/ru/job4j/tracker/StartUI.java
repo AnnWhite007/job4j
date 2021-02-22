@@ -61,7 +61,7 @@ public class StartUI {
                 System.out.print("search name: ");
                 String findName = scanner.nextLine();
                 Item[] listFindName = tracker.findByName(findName);
-                if (listFindName == null) {
+                if (listFindName.length == 0) {
                     System.out.println("=== Applications with this name was not found ===="); // вывод об ошибке
                 } else {
                     for (int i = 0; i < listFindName.length; i++) {
