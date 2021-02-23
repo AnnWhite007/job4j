@@ -18,7 +18,7 @@ public class StartUI {
         tracker.add(item);
     }
     public static void showAll(Input input, Tracker tracker) {
-        Item list[] = tracker.findAll();
+        Item[] list = tracker.findAll();
         for (int i = 0; i < list.length; i++) {
             System.out.println(list[i]);
         }
@@ -27,15 +27,15 @@ public class StartUI {
         System.out.println("=== Write id ====");
         int id = input.askInt("id: ");
         System.out.println("=== Write new name ====");
-        String newname = input.askStr("name: ");
-        Item newItem = new Item(newname);
+        String newName = input.askStr("name: ");
+        Item newItem = new Item(newName);
         if (tracker.replace(id, newItem)) {
             System.out.println("=== Successfully ===="); // вывод об успешности операции
         } else {
             System.out.println("=== Error ===="); // вывод об ошибке
         }
     }
-    public static void deteleItem(Input input, Tracker tracker) {
+    public static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Write id ====");
         int id = input.askInt("id: ");
         if (tracker.delete(id)) {
@@ -47,10 +47,11 @@ public class StartUI {
     public static void findItemById(Input input, Tracker tracker) {
         System.out.println("=== Write id ====");
         int id = input.askInt("id: ");
-        if (tracker.findById(id) == null) {
+        Item findId = tracker.findById(id);
+        if (findId == null) {
             System.out.println("=== Application with this id was not found ===="); // вывод об ошибке
         } else {
-            System.out.println(tracker.findById(id)); // вывод результата операции
+            System.out.println(findId); // вывод результата операции
         }
     }
     public static void findItemByName(Input input, Tracker tracker) {
@@ -67,7 +68,7 @@ public class StartUI {
     }
 
     public void init(Input input, Tracker tracker) {
-        boolean run = false;
+        boolean run = true;
         while (run) {
             this.showMenu();
             int select = input.askInt("Select: ");
@@ -78,7 +79,7 @@ public class StartUI {
             } else if (select == 2) {
                 StartUI.replaceItem(input, tracker);
             } else if (select == 3) {
-                StartUI.deteleItem(input, tracker);
+                StartUI.deleteItem(input, tracker);
             } else if (select == 4) {
                 StartUI.findItemById(input, tracker);
             } else if (select == 5) {
