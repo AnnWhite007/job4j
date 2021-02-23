@@ -12,12 +12,14 @@ package ru.job4j.tracker;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
 
     @Test
     public void whenReplaceItem() {
+        Output out = new StubOutput();
         // Создаем объект tracker
         Tracker tracker = new Tracker();
         // Добавим в tracker новую заявку - item. После этой операции у нас есть id
@@ -28,33 +30,35 @@ public class StartUITest {
                 new String[]{"0", String.valueOf(item.getId()), replacedName, "1"}
         );
         UserAction[] actions = {
-                new ReplaceItemAction(),
+                new ReplaceItemAction(out),
                 new ExitAction()
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
 
 
     @Test
     public void whenDeleteItem() {
+        Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        /* Добавим в tracker новую заявку */
+        // Добавим в tracker новую заявку
         Item item = tracker.add(new Item("Deleted item"));
-        /* Входные данные должны содержать ID добавленной заявки item.getId() */
+        // Входные данные должны содержать ID добавленной заявки item.getId()
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
         );
         UserAction[] actions = {
-                new DeleteItemAction(),
+                new DeleteItemAction(out),
                 new ExitAction()
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
     @Test
     public void whenCreateItem() {
+        Output out = new StubOutput();
         Input in = new StubInput(
                 //  0 - это пункт меню "Создать новую заявку"
                 //"Item name" - это будет имя новой заявки.
@@ -64,12 +68,95 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         // Показать меню
         UserAction[] actions = {
-                new CreateAction(),
+                new CreateAction(out),
                 new ExitAction()
         };
         // Выбрать пункт "Создание заявки", Выбрать пункт "Выйти"
-        new StartUI().init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         // Проверить, что в объект Tracker появилась новая заявка с именем "Item name"
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
+
+
+    }
+
+    @Test
+    public void whenFindAllAction() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        // Добавим в tracker новую заявку
+        Item item = tracker.add(new Item("first item"));
+        Input in = new StubInput(
+                //  0 - это пункт меню "Создать новую заявку"
+                //"Item name" - это будет имя новой заявки.
+                //1 - это пункт меню "Выйти".
+                new String[] {"0", "1"}
+        );
+        // Показать меню
+        UserAction[] actions = {
+                new ShowAllAction(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findAll()[0].getName(), is("first item"));
+    }
+
+    @Test
+    public void whenFindByNameAction() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        // Добавим в tracker новую заявку
+        Item item = tracker.add(new Item("second item"));
+        Input in = new StubInput(
+                //  0 - это пункт меню "Создать новую заявку"
+                //"Item name" - это будет имя новой заявки.
+                //1 - это пункт меню "Выйти".
+                new String[] {"0", "second item", "1"}
+        );
+        // Показать меню
+        UserAction[] actions = {
+                new FindItemByNameAction(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        Item []result = tracker.findByName(item.getName());
+        assertThat(result[0].getName(), is(item.getName()));
+    }
+
+    @Test
+    public void whenFindByIdAction() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        // Добавим в tracker новую заявку
+        Item item = tracker.add(new Item("third item"));
+        Input in = new StubInput(
+                //  0 - это пункт меню "Создать новую заявку"
+                //"Item name" - это будет имя новой заявки.
+                //1 - это пункт меню "Выйти".
+                new String[] {"0", String.valueOf(item.getId()), "1"}
+        );
+        // Показать меню
+        UserAction[] actions = {
+                new FindItemByIdAction(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        Item []result = tracker.findByName(item.getName());
+        assertThat(result[0].getId(), is(item.getId()));
+    }
+
+    @Test
+    public void whenExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
+                "0. Exit Program" + System.lineSeparator()
+        ));
     }
 }
