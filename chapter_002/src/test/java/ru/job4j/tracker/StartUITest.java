@@ -84,7 +84,9 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         // Добавим в tracker новую заявку
-        Item item = tracker.add(new Item("first item"));
+        tracker.add(new Item("first item"));
+        tracker.add(new Item("second item"));
+        tracker.add(new Item("third item"));
         Input in = new StubInput(
                 //  0 - это пункт меню "Создать новую заявку"
                 //"Item name" - это будет имя новой заявки.
@@ -97,7 +99,16 @@ public class StartUITest {
                 new ExitAction()
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("first item"));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
+                "0. Show all items" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator() +
+                "id: 1, name: first item" + System.lineSeparator() +
+                "id: 2, name: second item" + System.lineSeparator() +
+                "id: 3, name: third item" + System.lineSeparator() +
+                "Menu." + System.lineSeparator() +
+                "0. Show all items" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator()
+        ));
     }
 
     @Test
@@ -105,7 +116,9 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         // Добавим в tracker новую заявку
-        Item item = tracker.add(new Item("second item"));
+        tracker.add(new Item("first item"));
+        tracker.add(new Item("second item"));
+        tracker.add(new Item("second item"));
         Input in = new StubInput(
                 //  0 - это пункт меню "Создать новую заявку"
                 //"Item name" - это будет имя новой заявки.
@@ -118,8 +131,16 @@ public class StartUITest {
                 new ExitAction()
         };
         new StartUI(out).init(in, tracker, actions);
-        Item []result = tracker.findByName(item.getName());
-        assertThat(result[0].getName(), is(item.getName()));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
+                "0. Find items by name" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator() +
+                "=== Write search name ====" + System.lineSeparator() +
+                "id: 2, name: second item" + System.lineSeparator() +
+                "id: 3, name: second item" + System.lineSeparator() +
+                "Menu." + System.lineSeparator() +
+                "0. Find items by name" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator()
+        ));
     }
 
     @Test
@@ -127,12 +148,13 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         // Добавим в tracker новую заявку
-        Item item = tracker.add(new Item("third item"));
+        tracker.add(new Item("third item"));
+        tracker.add(new Item("fourth item"));
         Input in = new StubInput(
                 //  0 - это пункт меню "Создать новую заявку"
                 //"Item name" - это будет имя новой заявки.
                 //1 - это пункт меню "Выйти".
-                new String[] {"0", String.valueOf(item.getId()), "1"}
+                new String[] {"0", "2", "1"}
         );
         // Показать меню
         UserAction[] actions = {
@@ -140,8 +162,15 @@ public class StartUITest {
                 new ExitAction()
         };
         new StartUI(out).init(in, tracker, actions);
-        Item []result = tracker.findByName(item.getName());
-        assertThat(result[0].getId(), is(item.getId()));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() +
+                "0. Find item by Id" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator() +
+                "=== Write id ====" + System.lineSeparator() +
+                "id: 2, name: fourth item" + System.lineSeparator() +
+                "Menu." + System.lineSeparator() +
+                "0. Find item by Id" + System.lineSeparator() +
+                "1. Exit Program" + System.lineSeparator()
+        ));
     }
 
     @Test
