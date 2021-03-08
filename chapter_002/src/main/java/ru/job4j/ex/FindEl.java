@@ -17,7 +17,8 @@ public class FindEl {
         int rsl = -1;
         for (String i : value) {
            if (i.equals(key)) {
-               rsl = 1;
+               rsl = Integer.parseInt(i);
+               break;
            }
         }
         if (rsl == -1) {
