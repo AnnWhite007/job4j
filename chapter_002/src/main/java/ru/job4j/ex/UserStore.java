@@ -23,7 +23,7 @@ public class UserStore {
     }
 // если пользователь не валидный или если имя пользователя состоит из менее трех символов, то кинуть исключение UserInvalidException
     public static boolean validate(User user) throws UserInvalidException {
-        if (user.getUsername().length() < 3 || user.isValid() == false) {
+        if (user.getUsername().length() < 3 || !user.isValid()) {
             throw new UserInvalidException("User name invalid");
         }
         return true;
