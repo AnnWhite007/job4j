@@ -29,6 +29,11 @@ public class StartUI {
             this.showMenu(actions);
             // получаем от пользователя пункт меню, этот параметр мы используем в качестве индекса в массиве actions
             int select = input.askInt("Select: ");
+            // проверка, есть ли такой пункт в меню
+            if (select < 0 || select >= actions.length) {
+                out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
+                continue;
+            }
             // получение данных из массива
             UserAction action = actions[select];
             // У полученного объекта вызываем метод execute с передачей параметров input и tracker
@@ -47,7 +52,7 @@ public class StartUI {
     // при запуске пользователю отображается меню в консоли
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         // создаем массив с действиями
         UserAction[] actions = {
