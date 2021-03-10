@@ -52,7 +52,7 @@ public class StartUI {
     // при запуске пользователю отображается меню в консоли
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
-        Input input = new ValidateInput();
+        Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
         // создаем массив с действиями
         UserAction[] actions = {
