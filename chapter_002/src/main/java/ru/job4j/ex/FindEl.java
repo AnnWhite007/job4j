@@ -15,9 +15,9 @@ package ru.job4j.ex;
 public class FindEl {
     public static int indexOf(String[] value, String key) throws ElementNotFoundException {
         int rsl = -1;
-        for (String i : value) {
-           if (i.equals(key)) {
-               rsl = Integer.parseInt(i);
+        for (int i = 0; i < value.length; i++) {
+           if (value[i].equals(key)) {
+               rsl = i;
                break;
            }
         }
@@ -29,7 +29,7 @@ public class FindEl {
     public static void main(String[] args) {
         // try содержит операторы, которые мы хотим выполнить
         try {
-            indexOf(new String[]{"88", "55", "44", "55"}, "33");
+            indexOf(new String[]{"Kate", "55", "Ann", "55"}, "Bob");
             // catch содержит объявление исключение. Если операторы в блоке try вызовут исключение UserInputException,
             // то программа перейдет к выполнению блока catch
         } catch (ElementNotFoundException e) {
