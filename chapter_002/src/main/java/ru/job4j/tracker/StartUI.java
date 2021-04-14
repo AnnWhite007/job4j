@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 2.1. Реализация класса StartUI
  * Консольное приложение для работы с классом ru.job4j.tracker.Tracker.
@@ -22,7 +24,7 @@ public class StartUI {
         this.out = out;
     }
 
-    public void init(Input input, Tracker tracker, UserAction[] actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             // вывод меню
@@ -30,22 +32,24 @@ public class StartUI {
             // получаем от пользователя пункт меню, этот параметр мы используем в качестве индекса в массиве actions
             int select = input.askInt("Select: ");
             // проверка, есть ли такой пункт в меню
-            if (select < 0 || select >= actions.length) {
-                out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
+            if (select < 0 || select >= actions.size()) {
+                out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
                 continue;
             }
-            // получение данных из массива
-            UserAction action = actions[select];
+            // получение данных из списка
+            UserAction action = actions.get(select);
             // У полученного объекта вызываем метод execute с передачей параметров input и tracker
             run = action.execute(input, tracker);
         }
     }
 
     //отвечает за вывод пунктов меню
-    private void showMenu(UserAction[] actions) {
+    private void showMenu(List<UserAction> actions) {
         out.println("Menu.");
-        for (int index = 0; index < actions.length; index++) {
-            out.println(index + ". " + actions[index].name());
+        int index = 0;
+        for (UserAction value : actions) {
+            out.println(index + ". " + value.name());
+            index++;
         }
     }
 
@@ -54,16 +58,15 @@ public class StartUI {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        // создаем массив с действиями
-        UserAction[] actions = {
-                new CreateAction(output),
-                new ShowAllAction(output),
-                new ReplaceItemAction(output),
-                new DeleteItemAction(output),
-                new FindItemByIdAction(output),
-                new FindItemByNameAction(output),
-                new ExitAction()
-        };
+        // создаем список с действиями
+        List<UserAction> actions = new ArrayList<>();
+                actions.add(new CreateAction(output));
+                actions.add(new ShowAllAction(output));
+                actions.add(new ReplaceItemAction(output));
+                actions.add(new DeleteItemAction(output));
+                actions.add(new FindItemByIdAction(output));
+                actions.add(new FindItemByNameAction(output));
+                actions.add(new ExitAction());
         new StartUI(output).init(input, tracker, actions);
     }
 }
