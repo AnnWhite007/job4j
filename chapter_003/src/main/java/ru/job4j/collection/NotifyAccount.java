@@ -17,9 +17,7 @@ public class NotifyAccount {
         HashSet<Account> rsl = new HashSet<>();
         /* for-each accounts to HashSet; */
         for (Account man : accounts) {
-            if (rsl.equals(man) == false) {
                 rsl.add(man);
-            }
         }
         return rsl;
     }
