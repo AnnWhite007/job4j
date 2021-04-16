@@ -23,6 +23,7 @@ public class UniqueText {
         for (String wordCheck : text) {
             if (!check.contains(wordCheck)){
                 rsl = false;
+                break;
             }
         }
         return rsl;
