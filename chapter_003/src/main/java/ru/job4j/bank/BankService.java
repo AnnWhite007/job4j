@@ -41,9 +41,9 @@ public class BankService {
     }
 
     public Account findByRequisite(String passport, String requisite) {
-        User anonimus = findByPassport(passport);
-        if (anonimus != null) {
-            for (Account money : users.get(anonimus)) {
+        User man = findByPassport(passport);
+        if (man != null) {
+            for (Account money : users.get(man)) {
                 if (money.getRequisite().equals(requisite)) {
                     return money;
                 }
@@ -59,7 +59,7 @@ public class BankService {
         Account moneyDest = findByRequisite(destPassport, destRequisite);
         if (moneySrc != null
                 && moneyDest != null
-                && amount < moneySrc.getBalance()) {
+                && amount <= moneySrc.getBalance()) {
            moneySrc.setBalance(moneySrc.getBalance() - amount);
            moneyDest.setBalance(moneyDest.getBalance() + amount);
             rsl = true;
