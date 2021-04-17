@@ -16,9 +16,7 @@ public class OrderConvert {
     public static HashMap<String, Order> process(List<Order> orders) {
         HashMap<String, Order> map = new HashMap<>();
         for (Order value : orders) {
-            if (!map.containsKey(value.getNumber())) {
                 map.put(value.getNumber(), value);
-            }
         }
         return map;
     }
