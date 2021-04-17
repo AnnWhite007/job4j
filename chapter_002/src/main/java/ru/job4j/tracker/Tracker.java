@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -101,5 +102,15 @@ public class Tracker {
             items.remove(index);
         }
         return rsl;
+    }
+
+    public List<Item> sorted (List<Item> forSort) {
+        Collections.sort(forSort, new SortBy());
+        return forSort;
+    }
+    public List<Item> sortedReverse (List<Item> forSort) {
+        sorted(forSort);
+        Collections.reverse(forSort);
+        return forSort;
     }
 }
