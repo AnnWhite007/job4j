@@ -22,13 +22,12 @@ public class PriorityQueue {
     public void put(Task task) {
         int index = 0;
         for (Task element : tasks) {
-            if (element.getPriority() < task.getPriority()) {
-                index++;
-            } else {
+            if (element.getPriority() > task.getPriority()) {
                 break;
             }
+            index++;
         }
-            this.tasks.add(index, task);
+        this.tasks.add(index, task);
     }
 
     //Метод take возвращает первый элемент из списка и удаляет его
