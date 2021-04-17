@@ -55,7 +55,8 @@ public class Tracker {
 
     // получение списка всех заявок
     public List<Item> findAll() {
-        return items;
+        //возвращаем копию списка
+        return List.copyOf(items);
     }
 
     // получение списка по имени
@@ -72,13 +73,11 @@ public class Tracker {
     // Метод, который будет возвращать index по id
     private int indexOf(int id) {
         int rsl = -1;
-        int i = 0;
-        for (Item index : items) {
-            if (index.getId() == id) {
-                rsl = i;
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId() == id) {
+                rsl = index;
                 break;
             }
-            i++;
         }
         return rsl;
     }
