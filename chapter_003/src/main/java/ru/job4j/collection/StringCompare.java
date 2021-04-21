@@ -18,22 +18,12 @@ import java.util.Comparator;
 public class StringCompare implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
-        int size = (left.toCharArray().length > right.toCharArray().length) ? left.toCharArray().length : right.toCharArray().length;
-        char[] leftToArray = new char[size];
-        char[] rightToArray = new char[size];
-        int l = 0;
-        int r = 0;
-        for (char num : left.toCharArray()) {
-            leftToArray[l++] = num;
-        }
-        for (char num : right.toCharArray()) {
-            rightToArray[r++] = num;
-        }
+        int size = Math.min(left.length(), right.length());
         for (int index = 0; index < size; index++) {
-            if (leftToArray[index] != rightToArray[index]) {
-                return Character.compare(leftToArray[index], rightToArray[index]);
+            if (left.charAt(index) != right.charAt(index)) {
+                return  Character.compare(left.charAt(index), right.charAt(index));
             }
         }
-        return 0;
+        return Integer.compare(left.length(), right.length());
     }
 }
