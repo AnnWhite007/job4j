@@ -104,11 +104,11 @@ public class Tracker {
         return rsl;
     }
 
-    public List<Item> sorted (List<Item> forSort) {
+    public List<Item> sorted(List<Item> forSort) {
         Collections.sort(forSort, new SortBy());
         return forSort;
     }
-    public List<Item> sortedReverse (List<Item> forSort) {
+    public List<Item> sortedReverse(List<Item> forSort) {
         sorted(forSort);
         Collections.reverse(forSort);
         return forSort;

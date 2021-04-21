@@ -43,10 +43,10 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "fio='" + fio + '\'' +
-                ", group='" + group + '\'' +
-                ", created=" + created +
-                '}';
+        return "Student{"
+                + "fio='" + fio + '\''
+                + ", group='" + group + '\''
+                + ", created=" + created
+                + '}';
     }
 }

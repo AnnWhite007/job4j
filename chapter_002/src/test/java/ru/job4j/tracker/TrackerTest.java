@@ -39,7 +39,7 @@ public class TrackerTest {
         Item item2 = tracker.add(new Item("A"));
         Item item3 = tracker.add(new Item("B"));
         List<Item> list = Arrays.asList(item1, item2, item3);
-        assertThat(tracker.sorted(list), is(Arrays.asList(new Object [] {item2, item3, item1})));
+        assertThat(tracker.sorted(list), is(Arrays.asList(new Object[] {item2, item3, item1})));
 }
     @Test
     public void whenSortReverse() {
@@ -48,7 +48,7 @@ public class TrackerTest {
         Item item2 = tracker.add(new Item("A"));
         Item item3 = tracker.add(new Item("B"));
         List<Item> list = Arrays.asList(item1, item2, item3);
-        assertThat(tracker.sortedReverse(list), is(Arrays.asList(new Object [] {item1, item3, item2})));
+        assertThat(tracker.sortedReverse(list), is(Arrays.asList(new Object[] {item1, item3, item2})));
     }
 
 }

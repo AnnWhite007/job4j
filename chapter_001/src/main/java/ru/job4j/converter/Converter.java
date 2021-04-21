@@ -32,6 +32,6 @@ public class Converter {
         int rubles = euroToRuble(10);
         System.out.println("10 euro are " + rubles + " rubles");
         rubles = dollarToRuble(10);
-        System.out.println("10 dollars "+ rubles + " rubles");
+        System.out.println("10 dollars " + rubles + " rubles");
     }
 }

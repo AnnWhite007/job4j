@@ -35,7 +35,7 @@ public class Library {
         // Цикл с выводом книг с именем "Clean code"
         for (int index = 0; index < lib.length; index++) {
             Book pr = lib[index];
-            if (pr.getName().equals("Clean code")){
+            if (pr.getName().equals("Clean code")) {
                 System.out.println(pr.getName() + " - " + pr.getNum());
             }
         }

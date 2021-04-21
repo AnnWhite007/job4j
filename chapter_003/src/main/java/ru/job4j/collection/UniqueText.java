@@ -21,7 +21,7 @@ public class UniqueText {
             check.add(word);
         }
         for (String wordCheck : text) {
-            if (!check.contains(wordCheck)){
+            if (!check.contains(wordCheck)) {
                 rsl = false;
                 break;
             }

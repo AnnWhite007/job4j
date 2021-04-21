@@ -8,9 +8,9 @@ public class SingleTracker {
     /* реализовать singleton */
     private static SingleTracker instance = null;
 
-    private SingleTracker(){
+    private SingleTracker() {
     }
-    public static SingleTracker getInstance(){
+    public static SingleTracker getInstance() {
         if (instance == null) {
             instance = new SingleTracker();
         }
@@ -28,13 +28,13 @@ public class SingleTracker {
     public List<Item> findAll() {
         return tracker.findAll();
     }
-    public List<Item> findByName(String key){
+    public List<Item> findByName(String key) {
         return tracker.findByName(key);
     }
     public boolean replace(int id, Item item) {
         return tracker.replace(id, item);
     }
-    public boolean delete(int id){
+    public boolean delete(int id) {
         return tracker.delete(id);
     }
 }

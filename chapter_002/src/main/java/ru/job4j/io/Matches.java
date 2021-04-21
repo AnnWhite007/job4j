@@ -23,8 +23,7 @@ public class Matches {
             int matches = Integer.parseInt(input.nextLine());
             if (matches > 3 || matches < 1) {
                 System.out.println("Введенное число неверно.");
-            }
-            else {
+            } else {
                 turn = !turn;
                 count = count - matches;
                 System.out.println("Осталось " + count);

@@ -4,8 +4,7 @@ package ru.job4j.strategy;
  * Реализовать интерфейс Shape для  треугольника (Triangle)
  */
 
-public class Triangle implements Shape{
-
+public class Triangle implements Shape {
     @Override
     public String draw() {
         String ln = System.lineSeparator();

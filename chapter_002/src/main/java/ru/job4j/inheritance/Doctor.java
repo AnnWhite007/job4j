@@ -14,7 +14,7 @@ public class Doctor extends Profession {
         return this.diagnose;
     }
 
-    public static void card (String[] args) {
+    public static void card(String[] args) {
     Profession profession = new Profession();
     Doctor doctor = new Doctor();
     }

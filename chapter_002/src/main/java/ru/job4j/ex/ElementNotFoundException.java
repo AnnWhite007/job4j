@@ -5,7 +5,7 @@ package ru.job4j.ex;
  * всегда добавлять конструктор с текстом.
  */
 
-public class ElementNotFoundException extends Exception{
+public class ElementNotFoundException extends Exception {
     public ElementNotFoundException(String message) {
         super(message);
     }

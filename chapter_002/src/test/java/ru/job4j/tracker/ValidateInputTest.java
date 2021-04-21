@@ -39,8 +39,8 @@ public class ValidateInputTest {
         int selected1 = input.askInt("Enter menu:");
         int selected2 = input.askInt("Enter menu:");
         int selected3 = input.askInt("Enter menu:");
-        int [] rsl = {selected1, selected2, selected3};
-        assertThat(rsl, is(new Object[] { 5, 2, 3}));
+        int[] rsl = {selected1, selected2, selected3};
+        assertThat(rsl, is(new Object[] {5, 2, 3}));
     }
 
     @Test

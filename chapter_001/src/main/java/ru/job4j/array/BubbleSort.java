@@ -13,7 +13,7 @@ public class BubbleSort {
     /**
      * Метод должен сортировать массив целых чисел, используя алгоритм сортировки пузырьком.
      */
-    public int [] sort(int[] array) {
+    public int[] sort(int[] array) {
         for (int j = 1; j < array.length; j++) {
             for (int index = 0; index < array.length - j; index++) {
                 if (array[index] > array[index + 1]) {

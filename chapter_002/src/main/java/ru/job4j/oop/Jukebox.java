@@ -17,8 +17,7 @@ public class Jukebox {
         System.out.println("Пусть бегут неуклюже");
     } else if (position == 2) {
             System.out.println("Пусть бегут неуклюже");
-        }
-        else {
+        } else {
             System.out.println("Песня не найдена");
         }
     }

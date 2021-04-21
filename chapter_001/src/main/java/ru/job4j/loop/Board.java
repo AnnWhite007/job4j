@@ -15,7 +15,7 @@ package ru.job4j.loop;
 public class Board {
     public static void paint(int width, int height) {
         for (int i = 1; i <= width; i++) {
-            for (int j = 1; j <= height; j++ ) {
+            for (int j = 1; j <= height; j++) {
                 // условие проверки, что писать пробел или X
                 // Выше в задании мы определили закономерность, когда нужно проставлять X
                 if ((i + j) % 2 == 0) {

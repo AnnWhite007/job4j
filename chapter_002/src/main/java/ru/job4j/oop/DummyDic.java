@@ -6,10 +6,10 @@ package ru.job4j.oop;
  * указать тип данных, который описывает результат работы метода.
  */
 public class DummyDic {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         DummyDic first = new DummyDic();
         String word = "table";
-        System.out.println (first.engToRus(word));
+        System.out.println(first.engToRus(word));
     }
     public String engToRus(String eng) {
         return "Неизвестное слово: " + eng;
