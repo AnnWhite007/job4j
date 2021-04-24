@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/AnnWhite007/job4j_tracker.svg?branch=master)](https://travis-ci.com/AnnWhite007/job4j_tracker)
+[![Build Status](https://travis-ci.com/AnnWhite007/job4j.svg?branch=master)](https://travis-ci.com/AnnWhite007/job4j)
 [![codecov](https://codecov.io/gh/AnnWhite007/job4j/branch/master/graph/badge.svg?token=NQ8WPS12P7)](https://codecov.io/gh/AnnWhite007/job4j)
 
 # job4j
