@@ -1,5 +1,6 @@
 package ru.job4j.lambda;
 
+import java.util.Arrays;
 import java.util.Comparator;
 
 /**
@@ -13,11 +14,17 @@ import java.util.Comparator;
  *
  * 2.2. Лямбда блок
  * Если вычисление может занять несколько строчек. В этом случае лямбда описывается через блок.
- *
+ * 2.5. Ленивая загрузка
+ * Лямбда вычисляется, когда вызывается метод у функционального интерфейса.
+ * Если он не был вызван, сортировка не произойдет. Это свойство увеличивает скорость программы.
  */
 
 public class LambdaUsage {
       public static void main(String[] args) {
+          String[] names = {
+                  "Ivan",
+                  "Petr"
+          };
 
           Comparator<String> cmpText = (left, right) -> {
               //с выводом отладочной информации на консоль
@@ -30,5 +37,8 @@ public class LambdaUsage {
               System.out.println("compare - " + right.length() + " : " + left.length());
               return right.length() - left.length();
           };
+          Arrays.sort(names, cmpText);
+          Arrays.sort(names, cmpDescSize);
+
       }
 }
