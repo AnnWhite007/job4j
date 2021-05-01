@@ -15,7 +15,6 @@ import java.util.function.Function;
 public class FunctionCounter {
     public static List<Double> diapason(int start, int end, Function<Double, Double> func) {
         List<Double> rsl = new ArrayList<Double>();
-        List<Integer> range = new ArrayList<Integer>();
         for (double i = start; i < end; i++) {
             rsl.add(func.apply(i));
         }
