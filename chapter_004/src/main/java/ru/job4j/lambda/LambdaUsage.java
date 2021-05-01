@@ -35,7 +35,7 @@ public class LambdaUsage {
           Comparator<String> cmpDescSize = (left, right) -> {
               //с выводом отладочной информации на консоль
               System.out.println("compare - " + right.length() + " : " + left.length());
-              return right.length() - left.length();
+              return Integer.compare(right.length(), left.length());
           };
           Arrays.sort(names, cmpText);
           Arrays.sort(names, cmpDescSize);
