@@ -10,20 +10,16 @@ import java.util.function.Supplier;
  */
 
 public class ScopeInside {
-
-
     public static void main(String[] args) {
         int[] number = {1, 2, 3};
-        int total = add(
-                () -> {
-                    int t = 0;
-                    for (int i = 0; i < number.length; i++) {
-                        int num = number[i];
-                        t = t + num;
-                    }
-                    return t;
-                }
+        int total = 0;
+        for (int i = 0; i < number.length; i++) {
+            int num = number[i];
+            int t = total;
+            total = add(
+                    () -> t + num
             );
+        }
         System.out.println(total);
     }
 
