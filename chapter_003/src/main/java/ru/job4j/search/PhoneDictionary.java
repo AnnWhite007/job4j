@@ -3,6 +3,7 @@ package ru.job4j.search;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
+
 /**
  * 1. Телефонный справочник на базе ArrayList
  * Вернуть список всех пользователей, который содержат key в любых полях через метод String.contains.
@@ -18,10 +19,14 @@ public class PhoneDictionary {
     }
 
     public ArrayList<Person> find(String key) {
-        Predicate<Person> combine = p -> p.getName().contains(key)
-                || p.getSurname().contains(key)
-                || p.getAddress().contains(key)
-                || p.getPhone().contains(key);
+        Predicate<Person> byName = p -> p.getName().contains(key);
+        Predicate<Person> bySurname = p -> p.getSurname().contains(key);
+        Predicate<Person> byAddress = p -> p.getAddress().contains(key);
+        Predicate<Person> byPhone = p -> p.getPhone().contains(key);
+        Predicate<Person> combine = byName
+                .or(bySurname)
+                .or(byAddress)
+                .or(byPhone);
         ArrayList<Person> result = new ArrayList<>();
         for (Person person : persons) {
             if (combine.test(person)) {
