@@ -16,6 +16,10 @@ public class Student {
         return score;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -32,5 +36,13 @@ public class Student {
     @Override
     public int hashCode() {
         return Objects.hash(score, surname);
+    }
+
+    @Override
+    public String toString() {
+        return "Student {"
+                + score
+                + ", " + surname
+                + "}";
     }
 }
