@@ -1,7 +1,5 @@
 package ru.job4j.collection;
 
-
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,26 +13,27 @@ public class FreezeStr {
     public static boolean eq(String left, String right) {
         char[] leftArray = left.toCharArray();
         char[] rightArray = right.toCharArray();
-        Arrays.sort(leftArray);
-        Arrays.sort(rightArray);
-        Map<Integer, Character> lmap = new HashMap<Integer, Character>();
-        Map<Integer, Character> rmap = new HashMap<Integer, Character>();
-        int il = 1;
-        int ir = 1;
+        Map<Character, Integer> lmap = new HashMap<Character, Integer>();
         for (char value : leftArray) {
-            lmap.put(il, value);
-            il++;
-        }
-        for (char value : rightArray) {
-            rmap.put(ir, value);
-            ir++;
+            if (lmap.keySet().contains(value)) {
+                lmap.put(value, lmap.get(value) + 1);
+            }
+            lmap.put(value, 1);
         }
 
-        for (int key : lmap.keySet()) {
-            if (rmap.get(key) != lmap.get(key)) {
+        for (char value : rightArray) {
+            if (!lmap.containsKey(value)) {
                 return false;
+            } else if (lmap.get(value) == 1) {
+                lmap.remove(value);
+            } else if (lmap.get(value) > 1) {
+                lmap.put(value, lmap.get(value) - 1);
             }
         }
-        return true;
+
+        if (lmap.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }
