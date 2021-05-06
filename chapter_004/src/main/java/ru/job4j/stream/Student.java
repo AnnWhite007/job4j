@@ -16,10 +16,6 @@ public class Student {
         return score;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -29,8 +25,8 @@ public class Student {
             return false;
         }
         Student student = (Student) o;
-        return score == student.score &&
-                Objects.equals(surname, student.surname);
+        return score == student.score
+                && Objects.equals(surname, student.surname);
     }
 
     @Override
