@@ -19,6 +19,18 @@ import java.util.Map;
 // Добавлять пользователю банковский счет. У пользователя системы могут быть несколько счетов.
 // Переводить деньги с одного банковского счета на другой счет.
 
+// 6. Тестовое задание из модуля коллекции Lite переделать на Stream API.
+// рассмотрим примеры использования методов Stream API для коллекций типа Map.
+// Поскольку Map не является наследником интерфейса Collection, то в Map не определен метод stream()
+// - соответственно мы не можем получить поток значений напрямую. Однако у Map есть метод keySet(),
+// который возвращает набор всех ключей в виде коллекции типа Set.
+// В качестве терминальной операции будем использовать findFirst()
+// - метод возвращает результат в виде объекта типа Optional.
+// Однако поскольку на выходе нас интересует именно объект типа Student или Subject
+// - для возврата значения используем метод orElse(), который возвращает значение если в объекте Optional есть значение,
+// иначе - то значение которое мы передали в этот метод - в нашем случае это будет null.
+
+
 public class BankService {
     /**
      *  Хранение всех пользователей системы с привязанными к ним счетами осуществляется в коллекции типа Map
@@ -52,12 +64,17 @@ public class BankService {
      * @return - возвращает ключ пользователя если пользователь найден, 0 если нет
      */
     public User findByPassport(String passport) {
-        for (User key : users.keySet()) {
+/*        for (User key : users.keySet()) {
             if (key.getPassport().equals(passport)) {
                 return key;
             }
         }
-        return null;
+        return null; */
+        return users.keySet()
+                .stream()
+                .filter(u -> u.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -69,11 +86,16 @@ public class BankService {
     public Account findByRequisite(String passport, String requisite) {
         User man = findByPassport(passport);
         if (man != null) {
-            for (Account money : users.get(man)) {
+            /* for (Account money : users.get(man)) {
                 if (money.getRequisite().equals(requisite)) {
                     return money;
                 }
-            }
+            } */
+            return users.get(man)
+                    .stream()
+                    .filter(u -> u.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
