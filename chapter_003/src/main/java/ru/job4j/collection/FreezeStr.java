@@ -15,10 +15,8 @@ public class FreezeStr {
         char[] rightArray = right.toCharArray();
         Map<Character, Integer> lmap = new HashMap<Character, Integer>();
         for (char value : leftArray) {
-            if (lmap.keySet().contains(value)) {
-                lmap.put(value, lmap.get(value) + 1);
-            }
-            lmap.put(value, 1);
+            lmap.computeIfPresent(value, (key, v) -> v + 1);
+            lmap.putIfAbsent(value, 1);
         }
 
         for (char value : rightArray) {
