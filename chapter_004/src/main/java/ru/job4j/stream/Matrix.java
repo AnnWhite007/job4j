@@ -12,9 +12,8 @@ import java.util.stream.Stream;
 
 public class Matrix {
     public static List<Integer> toList(Integer[][] matrix) {
-        List<Integer> rsl = Stream.of(matrix)
+        return Stream.of(matrix)
                 .flatMap(Stream::of)
                 .collect(Collectors.toList());
-        return rsl;
     }
 }
