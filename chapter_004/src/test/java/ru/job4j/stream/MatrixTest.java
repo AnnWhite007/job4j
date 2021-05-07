@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
 public class MatrixTest {
     @Test
     public void whenMatrixToMap() {
-        Integer[][] matritsa = {{1, 2, 3, 4}, {8, 7, 6, 5}, {9, 10, 11, 12}};
-        List<Integer> result = Matrix.toList(matritsa);
+        Integer[][] matrix = {{1, 2, 3, 4}, {8, 7, 6, 5}, {9, 10, 11, 12}};
+        List<Integer> result = Matrix.toList(matrix);
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 8, 7, 6, 5, 9, 10, 11, 12);
         assertThat(result, is(expected));
     }

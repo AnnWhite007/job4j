@@ -1,8 +1,8 @@
 package ru.job4j.stream;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 5. Преобразование матрицы чисел в список чисел.
@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
  */
 
 public class Matrix {
-    public static List<Integer> toList(Integer[][] matritsa) {
-        List<Integer> rsl = Arrays.stream(matritsa)
-                .flatMap(e -> Arrays.stream(e))
+    public static List<Integer> toList(Integer[][] matrix) {
+        List<Integer> rsl = Stream.of(matrix)
+                .flatMap(Stream::of)
                 .collect(Collectors.toList());
         return rsl;
     }
