@@ -15,7 +15,7 @@ public class ConvertMatrix2ListTest {
                 {5, 6},
                 {10, 5}
         };
-        List<Integer> expect = Arrays.asList(
+        List<Integer> expect = List.of(
                 5, 6, 10, 5
         );
         List<Integer> result = list.toList(input);
