@@ -50,9 +50,9 @@ public class BankService {
      * @param account - счет, который нужно добавить
      */
     public void addAccount(String passport, Account account) {
-        User man = findByPassport(passport).get();
-            if (man != null && !users.get(man).contains(account)) {
-                users.get(man).add(account);
+        Optional<User> user = findByPassport(passport);
+            if (user.isPresent() && !users.get(user.get()).contains(account)) {
+                users.get(user.get()).add(account);
         }
     }
 
@@ -76,13 +76,13 @@ public class BankService {
      */
     public Optional<Account> findByRequisite(String passport, String requisite) {
         Optional<User> man = findByPassport(passport);
-        if (man != null) {
-            return users.get(man)
+        if (man.isPresent()) {
+            return users.get(man.get())
                     .stream()
                     .filter(u -> u.getRequisite().equals(requisite))
                     .findFirst();
         }
-        return null;
+        return Optional.empty();
     }
 
     /**
@@ -100,8 +100,8 @@ public class BankService {
         boolean rsl = false;
         Optional<Account> moneySrc = findByRequisite(srcPassport, srcRequisite);
         Optional<Account> moneyDest = findByRequisite(destPassport, destRequisite);
-        if (moneySrc != null
-                && moneyDest != null
+        if (moneySrc.isPresent()
+                && moneyDest.isPresent()
                 && amount <= moneySrc.get().getBalance()) {
            moneySrc.get().setBalance(moneySrc.get().getBalance() - amount);
            moneyDest.get().setBalance(moneyDest.get().getBalance() + amount);
