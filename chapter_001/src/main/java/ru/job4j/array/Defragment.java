@@ -3,7 +3,7 @@ package ru.job4j.array;
 /**
  * Class Defragment
  * 6.8. Удаление дубликатов в массиве.
- * Написать код, который будет перемещать заполненные ячейки массива в начало, а пустые в конец
+ * Написать код, который будет перемещать заполненные ячейки массива в начало, а пустые в конец.
  */
 
 public class Defragment {
@@ -12,8 +12,6 @@ public class Defragment {
             String cell = array[index];
             int j = index;
             if (cell == null) {
-                // переместить первую не null ячейку
-                // Здесь нужен цикл while
                 while (j < array.length - 1) {
                     String temp = array[j];
                     array[j] = array[j + 1];

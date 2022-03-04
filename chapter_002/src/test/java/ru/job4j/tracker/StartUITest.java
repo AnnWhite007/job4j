@@ -20,14 +20,17 @@ import static org.junit.Assert.assertThat;
 
 public class StartUITest {
 
+
+    /**
+     * Создаем объект tracker
+     * Добавим в tracker новую заявку - item. После этой операции у нас есть id
+     * Входные данные должны содержать ID добавленной заявки item.getId()
+     */
     @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
-        // Создаем объект tracker
         Tracker tracker = new Tracker();
-        // Добавим в tracker новую заявку - item. После этой операции у нас есть id
         Item item = tracker.add(new Item("Replaced item"));
-        // Входные данные должны содержать ID добавленной заявки item.getId()
         String replacedName = "New item name";
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(item.getId()), replacedName, "1"}
@@ -39,14 +42,15 @@ public class StartUITest {
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
 
-
+    /**
+     * Добавим в tracker новую заявку
+     * Входные данные должны содержать ID добавленной заявки item.getId()
+     */
     @Test
     public void whenDeleteItem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        // Добавим в tracker новую заявку
         Item item = tracker.add(new Item("Deleted item"));
-        // Входные данные должны содержать ID добавленной заявки item.getId()
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
         );
@@ -57,41 +61,45 @@ public class StartUITest {
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
+    /**
+     * 0 - это пункт меню "Создать новую заявку"
+     * "Item name" - это будет имя новой заявки.
+     * 1 - это пункт меню "Выйти".
+     * Показать меню
+     * Выбрать пункт "Создание заявки", Выбрать пункт "Выйти"
+     * Проверить, что в объект Tracker появилась новая заявка с именем "Item name"
+     */
     @Test
     public void whenCreateItem() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                //  0 - это пункт меню "Создать новую заявку"
-                //"Item name" - это будет имя новой заявки.
-                //1 - это пункт меню "Выйти".
                 new String[] {"0", "Item name", "1"}
         );
         Tracker tracker = new Tracker();
-        // Показать меню
         List<UserAction> actions = new ArrayList<>();
                 actions.add(new CreateAction(out));
                 actions.add(new ExitAction());
-        // Выбрать пункт "Создание заявки", Выбрать пункт "Выйти"
         new StartUI(out).init(in, tracker, actions);
-        // Проверить, что в объект Tracker появилась новая заявка с именем "Item name"
         assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
 
+    /**
+     * Добавим в tracker новую заявку
+     * 0 - это пункт меню "Создать новую заявку"
+     * "Item name" - это будет имя новой заявки.
+     * 1 - это пункт меню "Выйти".
+     * Показать меню
+     */
     @Test
     public void whenFindAllAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        // Добавим в tracker новую заявку
         tracker.add(new Item("first item"));
         tracker.add(new Item("second item"));
         tracker.add(new Item("third item"));
         Input in = new StubInput(
-                //  0 - это пункт меню "Создать новую заявку"
-                //"Item name" - это будет имя новой заявки.
-                //1 - это пункт меню "Выйти".
                 new String[] {"0", "1"}
         );
-        // Показать меню
         List<UserAction> actions = new ArrayList<>();
                 actions.add(new ShowAllAction(out));
                 actions.add(new ExitAction());
@@ -108,21 +116,23 @@ public class StartUITest {
         ));
     }
 
+    /**
+     * Добавим в tracker новую заявку
+     * 0 - это пункт меню "Создать новую заявку"
+     * "Item name" - это будет имя новой заявки.
+     * 1 - это пункт меню "Выйти".
+     * Показать меню
+     */
     @Test
     public void whenFindByNameAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        // Добавим в tracker новую заявку
         tracker.add(new Item("first item"));
         tracker.add(new Item("second item"));
         tracker.add(new Item("second item"));
         Input in = new StubInput(
-                //  0 - это пункт меню "Создать новую заявку"
-                //"Item name" - это будет имя новой заявки.
-                //1 - это пункт меню "Выйти".
                 new String[] {"0", "second item", "1"}
         );
-        // Показать меню
         List<UserAction> actions = new ArrayList<>();
                 actions.add(new FindItemByNameAction(out));
                 actions.add(new ExitAction());
@@ -139,20 +149,22 @@ public class StartUITest {
         ));
     }
 
+    /**
+     * Добавим в tracker новую заявку
+     * 0 - это пункт меню "Создать новую заявку"
+     * "Item name" - это будет имя новой заявки.
+     * 1 - это пункт меню "Выйти".
+     * Показать меню
+     */
     @Test
     public void whenFindByIdAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        // Добавим в tracker новую заявку
         tracker.add(new Item("third item"));
         tracker.add(new Item("fourth item"));
         Input in = new StubInput(
-                //  0 - это пункт меню "Создать новую заявку"
-                //"Item name" - это будет имя новой заявки.
-                //1 - это пункт меню "Выйти".
                 new String[] {"0", "2", "1"}
         );
-        // Показать меню
         List<UserAction> actions = new ArrayList<>();
                 actions.add(new FindItemByIdAction(out));
                 actions.add(new ExitAction());
@@ -182,7 +194,7 @@ public class StartUITest {
                 + "0. Exit Program" + System.lineSeparator()
         ));
     }
-    // тест на сценарий, где пользователь вводит сначала несуществующий пункт, а потом верный
+    /** Тест на сценарий, где пользователь вводит сначала несуществующий пункт, а потом верный */
     @Test
     public void whenInvalidExit() {
         Output out = new StubOutput();

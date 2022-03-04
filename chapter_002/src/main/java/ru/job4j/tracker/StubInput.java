@@ -7,9 +7,9 @@ package ru.job4j.tracker;
  */
 
 public class StubInput implements Input {
-    // массив строк
+    /** Массив строк */
     private String[] answers;
-    //счетчик, чтобы при повторном вызове метода askStr мы получали следующую ячейку из нашего массива
+    /** Счетчик, чтобы при повторном вызове метода askStr мы получали следующую ячейку из нашего массива */
     private int position = 0;
 
     public StubInput(String[] answers) {

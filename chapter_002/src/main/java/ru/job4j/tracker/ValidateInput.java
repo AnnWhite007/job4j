@@ -11,7 +11,7 @@ package ru.job4j.tracker;
 
 public class ValidateInput implements Input {
     private final Output out;
-    //Создадим поле, которое будет содержать источник данных
+    /** Создадим поле, которое будет содержать источник данных */
     private final Input in;
 
     public ValidateInput(Output out, Input input) {

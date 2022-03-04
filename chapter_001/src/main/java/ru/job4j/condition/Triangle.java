@@ -12,18 +12,15 @@ package ru.job4j.condition;
  * Создадим конструктор с тремя переменными типа Point.
  * Проинициализируем начальная состояние объекта Triangle c помощью входящих параметров.
  * Поправим метод area. Нужно убрать входящие параметры, вместо них нужно использовать поля объекта
- */
-/*
-public class Triangle {
-
-    public static boolean exist(double ab, double ac, double bc) {
-        if (ab + ac > bc && ac + bc > ab && ab + bc > ac) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
+ * public class Triangle {
+ *     public static boolean exist(double ab, double ac, double bc) {
+ *         if (ab + ac > bc && ac + bc > ab && ab + bc > ac) {
+ *             return true;
+ *         } else {
+ *             return false;
+ *         }
+ *     }
+ * }
  */
 
 public class Triangle {
@@ -39,11 +36,8 @@ public class Triangle {
 
     /**
      * Метод вычисления  полу-периметра по длинам сторон.
-     *
      * Формула.
-     *
      * (a + b + c) / 2
-     *
      * @param a расстояние между точками a b
      * @param b расстояние между точками a c
      * @param c расстояние между точками b c
@@ -55,13 +49,9 @@ public class Triangle {
 
     /**
      * Метод должен вычислить площадь треугольника.
-     *
      * Формула.
-     *
      * √ p *(p - ab) * (p - ac) * (p - bc)
-     *
      * где √ - корень квадратный, для извлечения корня использовать метод Math.sqrt().
-     *
      * @return Вернуть площадь, если треугольник существует или -1.
      */
     public double area() {
@@ -71,7 +61,6 @@ public class Triangle {
         double c = second.distance(third);
         double p = period(a, b, c);
         if (this.exist(a, b, c)) {
-            // написать формулу для расчета площади треугольника.
             rsl = Math.sqrt(p * (p - a) * (p - b) * (p - c));
         }
         return rsl;
@@ -79,9 +68,7 @@ public class Triangle {
 
     /**
      * Метод проверяет можно ли построить треугольник с такими длинами сторон.
-     *
-     * условие, чтобы определить можно ли построить треугольник.
-     *
+     * @return возвращается условие, чтобы определить можно ли построить треугольник.
      * @param a Длина от точки a b.
      * @param b Длина от точки a c.
      * @param c Длина от точки b c.

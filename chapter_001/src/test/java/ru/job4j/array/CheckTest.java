@@ -5,12 +5,14 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class CheckTest {
+
+    /** В тестах можно сразу проверять целиком массив через метод assertThat(resultArray, is(expectArray)) */
     @Test
     public void whenDataMonoByTrueThenTrue() {
         Check check = new Check();
         boolean[] input = new boolean[]{true, true, true};
         boolean result = check.mono(input);
-        assertThat(result, is(true)); // В тестах можно сразу проверять целиком массив через метод assertThat(resultArray, is(expectArray))
+        assertThat(result, is(true));
     }
 
     @Test

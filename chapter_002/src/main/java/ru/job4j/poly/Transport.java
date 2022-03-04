@@ -9,9 +9,8 @@ package ru.job4j.poly;
  */
 
 public interface Transport {
-    // метод, который возвращает введенную строку от пользователя
+    /** Метод, который возвращает введенную строку от пользователя. */
     String askStr(String question);
-    // метод, который будет возвращать от пользователя число
     int askInt(String question);
 
     void ehat();

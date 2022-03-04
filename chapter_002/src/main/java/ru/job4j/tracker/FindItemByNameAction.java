@@ -20,7 +20,7 @@ public class FindItemByNameAction implements UserAction {
         String findName = input.askStr("search name: ");
         List<Item> listFindName = tracker.findByName(findName);
         if (listFindName.size() == 0) {
-            out.println("=== Applications with this name was not found ===="); // вывод об ошибке
+            out.println("=== Applications with this name was not found ====");
         } else {
             for (Item value : listFindName) {
                 out.println(value);

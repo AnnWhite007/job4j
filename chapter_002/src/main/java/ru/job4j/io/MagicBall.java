@@ -9,7 +9,8 @@ import java.util.Random;
  * и выводит ответ на вопрос пользователя: да, нет, может быть.
  * Используем объект класса Scanner для ввода данных в нашу программу с клавиатуры
  * Он принимает в качестве параметра объект "System.in"
- * У объекта Scanner есть метод nextLine(), который считывает все символы строки после нажатия на клавишу Enter
+ * У объекта Scanner есть метод nextLine(), который считывает все символы строки после нажатия на клавишу Enter.
+ * Через класс Random сгенерируем число от 0-3.
  */
 
 public class MagicBall {
@@ -18,7 +19,6 @@ public class MagicBall {
         System.out.print("Я великий Оракул. Что ты хочешь узнать? ");
         String name = input.nextLine();
         System.out.println();
-        // Через класс Random сгенерируем число от 0-3
         int answer = new Random().nextInt(3);
         if (answer == 0) {
             System.out.println("Да");

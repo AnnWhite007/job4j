@@ -37,30 +37,30 @@ import java.util.List;
 
 public class Tracker {
     private final List<Item> items = new ArrayList<>();
-    // Поле для генерации нового ключа, представляет собой последовательность
+    /** Поле для генерации нового ключа, представляет собой последовательность. */
     private  int ids = 1;
 
-    // добавление заявок
+    /** Добавление заявок */
     public Item add(Item item) {
         item.setId(ids++);
         items.add(item);
         return item;
     }
 
-    // получение заявки по id, возвращает объект Item
+    /** Получение заявки по id, возвращает объект Item.
+     * Если индекс найден возвращаем item, иначе null. */
     public Item findById(int id) {
         int index = indexOf(id);
-        // Если индекс найден возвращаем item, иначе null
         return index != -1 ? items.get(index) : null;
     }
 
-    // получение списка всех заявок
+    /** Получение списка всех заявок.
+     * @return возвращаем копию списка */
     public List<Item> findAll() {
-        //возвращаем копию списка
         return List.copyOf(items);
     }
 
-    // получение списка по имени
+    /** Получение списка по имени. */
     public List<Item> findByName(String key) {
         List<Item> sameName = new ArrayList<>();
         for (Item value : items) {
@@ -71,7 +71,7 @@ public class Tracker {
         return sameName;
     }
 
-    // Метод, который будет возвращать index по id
+    /** Метод, который будет возвращать index по id. */
     private int indexOf(int id) {
         int rsl = -1;
         for (int index = 0; index < items.size(); index++) {
@@ -83,7 +83,7 @@ public class Tracker {
         return rsl;
     }
 
-    // Замена заявки + валидация
+    /** Замена заявки + валидация. */
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
         boolean rsl = index != -1;
@@ -93,12 +93,12 @@ public class Tracker {
         }
         return rsl;
     }
-    // Удаление элемента из массива и перемещение всех ячеек справа на одну позицию + валидация
+    /** Удаление элемента из массива и перемещение всех ячеек справа на одну позицию + валидация
+     * Элементы, следующие после удалённого элемента, сдвигаются влево, а размер списочного массива уменьшается на единицу */
     public boolean delete(int id) {
         int index = indexOf(id);
         boolean rsl = index != -1;
         if (rsl) {
-            //Элементы, следующие после удалённого элемента, сдвигаются влево, а размер списочного массива уменьшается на единицу
             items.remove(index);
         }
         return rsl;
@@ -108,6 +108,7 @@ public class Tracker {
         Collections.sort(forSort, new SortBy());
         return forSort;
     }
+
     public List<Item> sortedReverse(List<Item> forSort) {
         sorted(forSort);
         Collections.reverse(forSort);

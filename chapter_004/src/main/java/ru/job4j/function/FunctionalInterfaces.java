@@ -64,12 +64,13 @@ import java.util.function.*;
  * и указывать три одинаковых типа обобщения не имеет смысла.
  *
  * помимо абстрактных методов функциональные интерфейсы могут иметь целый набор статических методов или методы по умолчанию.
+ *
+ * Вставка элементов в карту с использованием BiConsumer
  */
 
 public class FunctionalInterfaces {
     public static void main(String[] args) {
         Map<Integer, String> map = new HashMap<>();
-        // вставка элементов в карту с использованием BiConsumer
         BiConsumer<Integer, String> biCon = (i, s) -> map.put(i, s);
         biCon.accept(1, "one");
         biCon.accept(2, "two");

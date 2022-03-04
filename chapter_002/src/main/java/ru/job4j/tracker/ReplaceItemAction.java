@@ -20,9 +20,9 @@ public class ReplaceItemAction implements UserAction {
         String newName = input.askStr("name: ");
         Item newItem = new Item(newName);
         if (tracker.replace(id, newItem)) {
-            out.println("=== Successfully ===="); // вывод об успешности операции
+            out.println("=== Successfully ====");
         } else {
-            out.println("=== Error ===="); // вывод об ошибке
+            out.println("=== Error ====");
         }
         return true;
     }

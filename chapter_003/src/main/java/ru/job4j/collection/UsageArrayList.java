@@ -19,11 +19,9 @@ import java.util.ArrayList;
 public class UsageArrayList {
     public static void main(String[] arg) {
         ArrayList<String> names = new ArrayList<String>();
-        //Добавление данных.
         names.add("Petr");
         names.add("Ivan");
         names.add("Stepan");
-        //Чтение данных.
         for (Object value : names) {
             System.out.println(value);
         }

@@ -12,7 +12,7 @@ package ru.job4j.ex;
  */
 
 public class UserStore {
-    // если пользователя не нашли в списке, то кинуть исключение UserNotFoundException
+    /** Если пользователя не нашли в списке, то кинуть исключение UserNotFoundException. */
     public static User findUser(User[] users, String login) throws UserNotFoundException {
         for (int i = 0; i < users.length; i++) {
             if (users[i].getUsername().equals(login)) {
@@ -21,7 +21,7 @@ public class UserStore {
         }
         throw new UserNotFoundException("Login could not be find");
     }
-// если пользователь не валидный или если имя пользователя состоит из менее трех символов, то кинуть исключение UserInvalidException
+    /** Если пользователь не валидный или если имя пользователя состоит из менее трех символов, то кинуть исключение UserInvalidException. */
     public static boolean validate(User user) throws UserInvalidException {
         if (user.getUsername().length() < 3 || !user.isValid()) {
             throw new UserInvalidException("User name invalid");
@@ -29,6 +29,10 @@ public class UserStore {
         return true;
     }
 
+    /** Использовать блок try-catch, так как исключения, которые могут возникнуть в процессе выполнения этого метода являются handle exception
+     * первый должен обрабатываться самый нижний класс по иерархии
+     * catch - этот блок отлавливает любые нестандартные ситуации в нашей программе (нежелательный)
+     */
     public static void main(String[] args) {
         User[] users = {
                 new User("Petr Arsentev", true)
@@ -39,15 +43,12 @@ public class UserStore {
                 validate(newFind);
                 System.out.println("This user has an access");
             }
-          // использовать блок try-catch, так как исключения, которые могут возникнуть в процессе выполнения этого метода являются handle exception
-      // первый должен обрабатываться самый нижний класс по иерархии
         } catch (UserInvalidException ui) {
             ui.printStackTrace();
         } catch (UserNotFoundException un) {
             un.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-            //Этот блок отлавливает любые нестандартные ситуации в нашей программе (нежелательный)
         } catch (Throwable th) {
             th.printStackTrace();
         }

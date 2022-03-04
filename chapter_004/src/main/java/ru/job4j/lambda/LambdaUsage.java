@@ -17,6 +17,10 @@ import java.util.Comparator;
  * 2.5. Ленивая загрузка
  * Лямбда вычисляется, когда вызывается метод у функционального интерфейса.
  * Если он не был вызван, сортировка не произойдет. Это свойство увеличивает скорость программы.
+ *
+ * cmpText, cmpDescSize - с выводом отладочной информации на консоль
+ *
+ *
  */
 
 public class LambdaUsage {
@@ -27,13 +31,11 @@ public class LambdaUsage {
           };
 
           Comparator<String> cmpText = (left, right) -> {
-              //с выводом отладочной информации на консоль
               System.out.println("compare - " + left + " : " + right);
               return left.compareTo(right);
           };
 
           Comparator<String> cmpDescSize = (left, right) -> {
-              //с выводом отладочной информации на консоль
               System.out.println("compare - " + right.length() + " : " + left.length());
               return Integer.compare(right.length(), left.length());
           };

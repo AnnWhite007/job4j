@@ -13,6 +13,8 @@ import java.util.List;
  * В нем же мы и определяем недостающие методы.
  * Оператор new перед именем класса сообщает виртуальной машине, что из полученного класса нужно сразу создать объект.
  * Желательно всегда их указывать обобщенные типы.
+ *
+ * comparatorByName - компаратор на основании анонимного класса.
  */
 
 public class AttachmentSort {
@@ -32,7 +34,6 @@ public class AttachmentSort {
         };
         attachments.sort(comparator);
         System.out.println(attachments);
-        // Здесь создайте компаратор на основании анонимного класса.
         Comparator<Attachment> comparatorByName = new Comparator<Attachment>() {
             @Override
             public int compare(Attachment o1, Attachment o2) {

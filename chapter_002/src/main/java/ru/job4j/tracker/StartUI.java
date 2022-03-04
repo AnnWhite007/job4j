@@ -24,26 +24,28 @@ public class StartUI {
         this.out = out;
     }
 
+    /**
+     * Вывод меню.
+     * Получаем от пользователя пункт меню, этот параметр мы используем в качестве индекса в массиве actions.
+     * Проверка, есть ли такой пункт в меню.
+     * Получение данных из списка.
+     * У полученного объекта вызываем метод execute с передачей параметров input и tracker.
+     */
     public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
-            // вывод меню
             this.showMenu(actions);
-            // получаем от пользователя пункт меню, этот параметр мы используем в качестве индекса в массиве actions
             int select = input.askInt("Select: ");
-            // проверка, есть ли такой пункт в меню
             if (select < 0 || select >= actions.size()) {
                 out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
                 continue;
             }
-            // получение данных из списка
             UserAction action = actions.get(select);
-            // У полученного объекта вызываем метод execute с передачей параметров input и tracker
             run = action.execute(input, tracker);
         }
     }
 
-    //отвечает за вывод пунктов меню
+    /** Отвечает за вывод пунктов меню */
     private void showMenu(List<UserAction> actions) {
         out.println("Menu.");
         int index = 0;
@@ -53,12 +55,12 @@ public class StartUI {
         }
     }
 
-    // при запуске пользователю отображается меню в консоли
+    /**  При запуске пользователю отображается меню в консоли.
+     * Создаем список с действиями. */
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        // создаем список с действиями
         List<UserAction> actions = new ArrayList<>();
                 actions.add(new CreateAction(output));
                 actions.add(new ShowAllAction(output));
